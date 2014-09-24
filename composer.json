@@ -1,0 +1,23 @@
+{
+    "name": "odolbeau/influxdb-admin-cli",
+    "description": "InfluxDB admin client",
+    "license": "MIT",
+    "require": {
+        "symfony/console": "~2.4",
+        "kriswallsmith/buzz": "~0.12"
+    },
+    "autoload": {
+        "psr-0": {
+            "Bab\\InfluxDB": "src/"
+        }
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "bin": ["influxdb-admin-cli"],
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.1.x-dev"
+        }
+    }
+}
