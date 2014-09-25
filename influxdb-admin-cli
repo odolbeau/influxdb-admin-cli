@@ -14,4 +14,8 @@ $application->add(new Command\ClusterAdminsShowCommand());
 $application->add(new Command\ClusterServersCommand());
 $application->add(new Command\DbCreateCommand());
 $application->add(new Command\DbDeleteCommand());
+$application->add(new Command\DbUsersCreateCommand());
+$application->add(new Command\DbUsersDeleteCommand());
+$application->add(new Command\DbUsersListCommand());
+
 $application->run();

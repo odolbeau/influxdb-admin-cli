@@ -89,6 +89,49 @@ class InfluxDB
     }
 
     /**
+     * createDatabaseUser
+     *
+     * @param string $database
+     * @param string $name
+     * @param string $password
+     *
+     * @return void
+     */
+    public function createDatabaseUser($database, $name, $password)
+    {
+        $this->post(
+            sprintf('/db/%s/users', $database),
+            array(),
+            json_encode(array('name' => $name, 'password' => $password))
+        );
+    }
+
+    /**
+     * deleteDatabaseUser
+     *
+     * @param string $database
+     * @param string $name
+     *
+     * @return void
+     */
+    public function deleteDatabaseUser($database, $name)
+    {
+        $this->delete(sprintf('/db/%s/users/%s', $database, $name));
+    }
+
+    /**
+     * getDatabaseUsers
+     *
+     * @param string $database
+     *
+     * @return string
+     */
+    public function getDatabaseUsers($database)
+    {
+        return $this->get(sprintf('/db/%s/users', $database))->getContent();
+    }
+
+    /**
      * get
      *
      * @param string $url
@@ -98,7 +141,7 @@ class InfluxDB
      */
     protected function get($url, $headers = array())
     {
-        return (new Browser())->get($this->getFullUrl($url), $headers);
+        return $this->getBrowser()->get($this->getFullUrl($url), $headers);
     }
 
     /**
@@ -112,7 +155,7 @@ class InfluxDB
      */
     protected function post($url, $headers = array(), $content = '')
     {
-        return (new Browser())->post(
+        return $this->getBrowser()->post(
             $this->getFullUrl($url),
             $headers,
             $content
@@ -130,7 +173,7 @@ class InfluxDB
      */
     protected function delete($url, $headers = array(), $content = '')
     {
-        return (new Browser())->delete(
+        return $this->getBrowser()->delete(
             $this->getFullUrl($url),
             $headers,
             $content
@@ -144,7 +187,7 @@ class InfluxDB
      *
      * @return string
      */
-    public function getFullUrl($url)
+    protected function getFullUrl($url)
     {
         return sprintf(
             'http://%s:%d%s?u=%s&p=%s',
@@ -153,6 +196,18 @@ class InfluxDB
             $url,
             $this->user,
             $this->password
+        );
+    }
+
+    /**
+     * getBrowser
+     *
+     * @return Browser
+     */
+    protected function getBrowser()
+    {
+        return new Browser(
+            new \Buzz\Client\Curl()
         );
     }
 }
