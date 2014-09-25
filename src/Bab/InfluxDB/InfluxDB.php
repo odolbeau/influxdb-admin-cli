@@ -22,26 +22,54 @@ class InfluxDB
     /**
      * getClusterServers
      *
-     * @return void
+     * @return string
      */
     public function getClusterServers()
     {
-        return $this->get('/cluster/servers');
+        return $this->get('/cluster/servers')->getContent();
+    }
+
+    /**
+     * createDatabase
+     *
+     * @param string $name
+     *
+     * @return string
+     */
+    public function createDatabase($name)
+    {
+        $this->post('/db', array(), json_encode(array('name' => $name)));
     }
 
     /**
      * get
      *
      * @param string $url
-     * @param array $headers
+     * @param array  $headers
      *
-     * @return void
+     * @return Response
      */
     public function get($url, $headers = array())
     {
-        $browser = new Browser();
+        return (new Browser())->get($this->getFullUrl($url), $headers);
+    }
 
-        return $browser->get($this->getFullUrl($url), $headers)->getContent();
+    /**
+     * post
+     *
+     * @param string $url
+     * @param array  $headers
+     * @param string $content
+     *
+     * @return Response
+     */
+    public function post($url, $headers = array(), $content = '')
+    {
+        return (new Browser())->post(
+            $this->getFullUrl($url),
+            $headers,
+            $content
+        );
     }
 
     /**

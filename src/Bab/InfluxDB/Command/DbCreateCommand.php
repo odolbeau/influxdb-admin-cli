@@ -7,10 +7,8 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class ClusterServersCommand extends Command
+class DbCreateCommand extends Command
 {
-    protected $jsonOutput = true;
-
     /**
      * {@inheritDoc}
      */
@@ -19,8 +17,9 @@ class ClusterServersCommand extends Command
         parent::configure();
 
         $this
-            ->setName('cluster:servers')
-            ->setDescription('Get servers state')
+            ->setName('db:create')
+            ->setDescription('Create a new database')
+            ->addArgument('name', InputArgument::REQUIRED, 'DB name')
         ;
     }
 
@@ -29,12 +28,9 @@ class ClusterServersCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $influxDB = $this->getInfluxDB($input, $output);
+        $name = $input->getArgument('name');
+        $this->getInfluxDB($input, $output)->createDatabase($name);
 
-        $this->write(
-            $input,
-            $output,
-            $influxDB->getClusterServers()
-        );
+        $output->writeln(sprintf('<comment>Database "<info>%s</info>" created</comment>', $name));
     }
 }

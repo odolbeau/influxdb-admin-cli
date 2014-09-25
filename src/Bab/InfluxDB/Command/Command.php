@@ -10,6 +10,9 @@ use Bab\InfluxDB\InfluxDB;
 
 class Command extends BaseCommand
 {
+    protected $jsonOutput = false;
+
+
     /**
      * {@inheritDoc}
      */
@@ -20,14 +23,17 @@ class Command extends BaseCommand
             ->addOption('port', null, InputOption::VALUE_REQUIRED, 'Which port?', 8086)
             ->addOption('user', 'u', InputOption::VALUE_REQUIRED, 'Which user?', 'root')
             ->addOption('password', 'p', InputOption::VALUE_REQUIRED, 'Which password? If nothing provided, password is asked', null)
-            ->addOption('raw', null, InputOption::VALUE_NONE, 'Do not pretty print result', null)
         ;
+
+        if ($this->jsonOutput) {
+            $this->addOption('raw', null, InputOption::VALUE_NONE, 'Do not pretty print result', null);
+        }
     }
 
     /**
      * getInfluxDB
      *
-     * @param InputInterface $input
+     * @param InputInterface  $input
      * @param OutputInterface $output
      *
      * @return InfluxDB
@@ -48,9 +54,18 @@ class Command extends BaseCommand
         );
     }
 
+    /**
+     * write
+     *
+     * @param InputInterface  $input
+     * @param OutputInterface $output
+     * @param string          $content
+     *
+     * @return void
+     */
     protected function write(InputInterface $input, OutputInterface $output, $content)
     {
-        if ($input->getOption('raw')) {
+        if (!$input->hasOption('raw') || $input->getOption('raw')) {
             $output->writeln($content);
 
             return;
