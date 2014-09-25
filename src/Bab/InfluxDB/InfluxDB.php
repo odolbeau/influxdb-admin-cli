@@ -30,6 +30,16 @@ class InfluxDB
     }
 
     /**
+     * getClusterAdmins
+     *
+     * @return string
+     */
+    public function getClusterAdmins()
+    {
+        return $this->get('/cluster_admins')->getContent();
+    }
+
+    /**
      * createDatabase
      *
      * @param string $name
