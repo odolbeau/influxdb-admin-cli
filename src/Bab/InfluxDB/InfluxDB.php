@@ -34,11 +34,23 @@ class InfluxDB
      *
      * @param string $name
      *
-     * @return string
+     * @return void
      */
     public function createDatabase($name)
     {
         $this->post('/db', array(), json_encode(array('name' => $name)));
+    }
+
+    /**
+     * deleteDatabase
+     *
+     * @param string $name
+     *
+     * @return void
+     */
+    public function deleteDatabase($name)
+    {
+        $this->delete('/db/'.$name);
     }
 
     /**
@@ -49,7 +61,7 @@ class InfluxDB
      *
      * @return Response
      */
-    public function get($url, $headers = array())
+    protected function get($url, $headers = array())
     {
         return (new Browser())->get($this->getFullUrl($url), $headers);
     }
@@ -63,9 +75,27 @@ class InfluxDB
      *
      * @return Response
      */
-    public function post($url, $headers = array(), $content = '')
+    protected function post($url, $headers = array(), $content = '')
     {
         return (new Browser())->post(
+            $this->getFullUrl($url),
+            $headers,
+            $content
+        );
+    }
+
+    /**
+     * delete
+     *
+     * @param string $url
+     * @param array  $headers
+     * @param string $content
+     *
+     * @return Response
+     */
+    protected function delete($url, $headers = array(), $content = '')
+    {
+        return (new Browser())->delete(
             $this->getFullUrl($url),
             $headers,
             $content

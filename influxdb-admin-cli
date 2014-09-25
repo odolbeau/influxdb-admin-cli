@@ -10,4 +10,5 @@ $application = new Application();
 
 $application->add(new Command\ClusterServersCommand());
 $application->add(new Command\DbCreateCommand());
+$application->add(new Command\DbDeleteCommand());
 $application->run();
