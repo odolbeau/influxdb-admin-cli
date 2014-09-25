@@ -53,6 +53,23 @@ class InfluxDB
     }
 
     /**
+     * updateClusterAdminPassword
+     *
+     * @param string $name
+     * @param string $password
+     *
+     * @return void
+     */
+    public function updateClusterAdminPassword($name, $password)
+    {
+        $this->post(
+            sprintf('/cluster_admins/%s', $name),
+            array(),
+            json_encode(array('password' => $password))
+        );
+    }
+
+    /**
      * deleteClusterAdmin
      *
      * @param string $name
