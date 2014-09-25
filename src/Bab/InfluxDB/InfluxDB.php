@@ -53,6 +53,18 @@ class InfluxDB
     }
 
     /**
+     * deleteClusterAdmin
+     *
+     * @param string $name
+     *
+     * @return void
+     */
+    public function deleteClusterAdmin($name)
+    {
+        $this->delete('/cluster_admins/' . $name);
+    }
+
+    /**
      * createDatabase
      *
      * @param string $name

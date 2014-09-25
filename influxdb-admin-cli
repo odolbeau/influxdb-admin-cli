@@ -9,6 +9,7 @@ use Bab\InfluxDB\Command;
 $application = new Application();
 
 $application->add(new Command\ClusterAdminsCreateCommand());
+$application->add(new Command\ClusterAdminsDeleteCommand());
 $application->add(new Command\ClusterAdminsShowCommand());
 $application->add(new Command\ClusterServersCommand());
 $application->add(new Command\DbCreateCommand());
