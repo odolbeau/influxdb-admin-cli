@@ -40,6 +40,19 @@ class InfluxDB
     }
 
     /**
+     * createClusterAdmin
+     *
+     * @param string $name
+     * @param string $password
+     *
+     * @return void
+     */
+    public function createClusterAdmin($name, $password)
+    {
+        $this->post('/cluster_admins', array(), json_encode(array('name' => $name, 'password' => $password)));
+    }
+
+    /**
      * createDatabase
      *
      * @param string $name
