@@ -90,7 +90,16 @@ class InfluxDB
      */
     public function createDatabase($name)
     {
-        $this->post('/db', array(), json_encode(array('name' => $name)));
+        $response = $this->post('/db', array(), json_encode(array('name' => $name)));
+
+        if (201 !== $response->getStatusCode()) {
+            throw new \Exception(sprintf(
+                'Unable to create database "%s". Response code %s. Message: "%s".',
+                $name,
+                $response->getStatusCode(),
+                $response->getContent()
+            ));
+        }
     }
 
     /**
@@ -102,7 +111,16 @@ class InfluxDB
      */
     public function deleteDatabase($name)
     {
-        $this->delete('/db/'.$name);
+        $response = $this->delete('/db/'.$name);
+
+        if (204 !== $response->getStatusCode()) {
+            throw new \Exception(sprintf(
+                'Unable to delete database "%s". Response code %s. Message: "%s".',
+                $name,
+                $response->getStatusCode(),
+                $response->getContent()
+            ));
+        }
     }
 
     /**
@@ -116,11 +134,20 @@ class InfluxDB
      */
     public function createDatabaseUser($database, $name, $password)
     {
-        $this->post(
+        $response = $this->post(
             sprintf('/db/%s/users', $database),
             array(),
             json_encode(array('name' => $name, 'password' => $password))
         );
+
+        if (200 !== $response->getStatusCode()) {
+            throw new \Exception(sprintf(
+                'Unable to create database user "%s". Response code %s. Message: "%s".',
+                $name,
+                $response->getStatusCode(),
+                $response->getContent()
+            ));
+        }
     }
 
     /**
