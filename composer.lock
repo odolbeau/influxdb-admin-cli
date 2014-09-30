@@ -4,20 +4,20 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "765a0da4abf4ee02acaa1f5d446ac170",
+    "hash": "7ece48069465babe22f20698ce1dfda3",
     "packages": [
         {
             "name": "kriswallsmith/buzz",
-            "version": "v0.12",
+            "version": "v0.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kriswallsmith/Buzz.git",
-                "reference": "9d56d36a58c47e2f612f4b856ff9baa0e3375ff6"
+                "reference": "487760b05d6269a4c2c374364325326cfa65b12c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kriswallsmith/Buzz/zipball/9d56d36a58c47e2f612f4b856ff9baa0e3375ff6",
-                "reference": "9d56d36a58c47e2f612f4b856ff9baa0e3375ff6",
+                "url": "https://api.github.com/repos/kriswallsmith/Buzz/zipball/487760b05d6269a4c2c374364325326cfa65b12c",
+                "reference": "487760b05d6269a4c2c374364325326cfa65b12c",
                 "shasum": ""
             },
             "require": {
@@ -52,21 +52,21 @@
                 "curl",
                 "http client"
             ],
-            "time": "2014-07-29 23:52:21"
+            "time": "2014-09-15 12:42:36"
         },
         {
             "name": "symfony/console",
-            "version": "v2.5.4",
+            "version": "v2.5.5",
             "target-dir": "Symfony/Component/Console",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Console.git",
-                "reference": "748beed2a1e73179c3f5154d33fe6ae100c1aeb1"
+                "reference": "ca053eaa031c93afb68a71e4eb1f4168dfd4a661"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Console/zipball/748beed2a1e73179c3f5154d33fe6ae100c1aeb1",
-                "reference": "748beed2a1e73179c3f5154d33fe6ae100c1aeb1",
+                "url": "https://api.github.com/repos/symfony/Console/zipball/ca053eaa031c93afb68a71e4eb1f4168dfd4a661",
+                "reference": "ca053eaa031c93afb68a71e4eb1f4168dfd4a661",
                 "shasum": ""
             },
             "require": {
@@ -107,7 +107,54 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "http://symfony.com",
-            "time": "2014-08-14 16:10:54"
+            "time": "2014-09-25 09:53:56"
+        },
+        {
+            "name": "symfony/filesystem",
+            "version": "v2.5.5",
+            "target-dir": "Symfony/Component/Filesystem",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/Filesystem.git",
+                "reference": "4e62fab0060a826561c78b665925b37c870c45f5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/Filesystem/zipball/4e62fab0060a826561c78b665925b37c870c45f5",
+                "reference": "4e62fab0060a826561c78b665925b37c870c45f5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.5-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\Filesystem\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                },
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                }
+            ],
+            "description": "Symfony Filesystem Component",
+            "homepage": "http://symfony.com",
+            "time": "2014-09-22 09:14:18"
         }
     ],
     "packages-dev": [],
