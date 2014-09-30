@@ -70,6 +70,32 @@ class InfluxDB
     }
 
     /**
+     * createClusterDatabaseConfigs
+     *
+     * @param string $name
+     * @param string $data
+     *
+     * @return void
+     */
+    public function createClusterDatabaseConfigs($name, $data)
+    {
+        $response = $this->post(
+            sprintf('/cluster/database_configs/%s', $name),
+            array(),
+            $data
+        );
+
+        if (201 !== $response->getStatusCode()) {
+            throw new \Exception(sprintf(
+                'Unable to create database "%s". Response code %s. Message: "%s".',
+                $name,
+                $response->getStatusCode(),
+                $response->getContent()
+            ));
+        }
+    }
+
+    /**
      * deleteClusterAdmin
      *
      * @param string $name
@@ -160,7 +186,7 @@ class InfluxDB
      */
     public function deleteDatabaseUser($database, $name)
     {
-        $this->delete(sprintf('/db/%s/users/%s', $database, $name));
+        return $this->delete(sprintf('/db/%s/users/%s', $database, $name));
     }
 
     /**

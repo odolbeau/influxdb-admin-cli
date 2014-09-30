@@ -12,6 +12,7 @@ $application->add(new Command\ClusterAdminsCreateCommand());
 $application->add(new Command\ClusterAdminsDeleteCommand());
 $application->add(new Command\ClusterAdminsShowCommand());
 $application->add(new Command\ClusterAdminsUpdatePasswordCommand());
+$application->add(new Command\ClusterDatabaseConfigsCommand());
 $application->add(new Command\ClusterServersCommand());
 $application->add(new Command\DbCreateCommand());
 $application->add(new Command\DbDeleteCommand());
